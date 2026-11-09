@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F4EAF5" />
+    <meta name="description" content="IBCM SuperEduAI student dashboard preview." />
+    <link rel="shortcut icon" href="./src/assets/hero.png" type="image/x-icon">
+    <script>
+      (() => {
+        const key = 'ibcm-supereduai-theme'
+        let theme
+        let savedTheme
+        try {
+          savedTheme = localStorage.getItem(key)
+          theme = ['light', 'dark', 'astral', 'abyss'].includes(savedTheme)
+            ? savedTheme
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+        } catch {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme === 'light' ? 'light' : 'dark'
+        const browserColors = {
+          light: '#F4EAF5',
+          dark: '#190F1D',
+          astral: '#0B1022',
+          abyss: '#100D12',
+        }
+        document.querySelector('meta[name="theme-color"]').content = browserColors[theme]
+        if (savedTheme === 'nature') {
+          try { localStorage.setItem(key, theme) } catch { /* Keep the safe in-memory fallback. */ }
+        }
+      })()
+    </script>
+    <title>IBCM SuperEduAI | Student Dashboard</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+/* Theme-specific artwork for the welcome panel. These scenes are deliberately
+   confined to the illustration and atmosphere layers so the copy stays clear. */
+.solar-hero__atmosphere {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+.solar-hero[data-atmosphere='abyss'] .solar-hero__atmosphere {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse at 78% 52%, color-mix(in srgb, var(--color-primary) 15%, transparent), transparent 34%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--color-primary) 8%, transparent), transparent 42%);
+}
+
+.solar-hero[data-atmosphere='astral'] .solar-hero__atmosphere {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse at 78% 50%, color-mix(in srgb, var(--color-primary) 14%, transparent), transparent 36%),
+    radial-gradient(ellipse at 100% 0%, color-mix(in srgb, var(--color-lavender) 8%, transparent), transparent 44%);
+}
+
+.solar-scene--abyss,
+.solar-scene--astral { z-index: 1; }
+.theme-art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+/* Abyss: a dark gravitational center with irregular crimson currents. */
+.abyss-aura { animation: abyss-aura 9s ease-in-out infinite alternate; }
+.abyss-pulse { fill: none; stroke: var(--color-primary); stroke-width: .8; opacity: 0; transform-box: fill-box; transform-origin: center; animation: abyss-pulse 9s ease-out infinite; }
+.abyss-pulse--two { animation-delay: 4.5s; }
+.abyss-gravity { fill: none; stroke: var(--color-lavender); stroke-width: 1.1; stroke-dasharray: 68 20 32 46; opacity: .34; transform-box: fill-box; transform-origin: center; animation: abyss-gravity-turn 54s linear infinite; }
+.abyss-gravity--two { stroke: var(--color-primary); stroke-dasharray: 42 17 76 31; animation-direction: reverse; animation-duration: 68s; }
+.abyss-ring { fill: none; stroke: var(--color-primary); stroke-width: 1.15; stroke-dasharray: 104 25 42 38; opacity: .45; transform-box: fill-box; transform-origin: center; animation: abyss-ring-turn 42s linear infinite; }
+.abyss-ring--inner { stroke: var(--color-lavender); stroke-width: .8; stroke-dasharray: 55 20 30 15; opacity: .31; animation-duration: 31s; animation-direction: reverse; }
+.abyss-stream,.abyss-stream-glow { fill: none; stroke: url(#abyss-current); stroke-linecap: round; stroke-width: 4.5; stroke-dasharray: 18 14 38 28; opacity: .72; animation: abyss-flow 22s linear infinite; }
+.abyss-stream--two { stroke-width: 2.3; opacity: .52; stroke-dasharray: 8 18 30 17; animation-duration: 28s; animation-direction: reverse; }
+.abyss-stream--three { stroke-width: 1.6; opacity: .34; stroke-dasharray: 3 22 18 34; animation-duration: 36s; }
+.abyss-stream-glow { stroke-width: 9; opacity: .3; filter: url(#abyss-glow); stroke-dasharray: 38 40; animation-duration: 31s; }
+.abyss-fracture { fill: none; stroke: var(--color-primary); stroke-width: .8; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 4 10; opacity: .24; animation: abyss-fracture-glow 12s ease-in-out infinite alternate; }
+.abyss-core-rim { fill: none; stroke: var(--color-primary); stroke-width: 1.5; opacity: .64; filter: drop-shadow(0 0 7px color-mix(in srgb, var(--color-primary) 78%, transparent)); }
+.abyss-lensing { fill: none; stroke: var(--color-lavender); stroke-width: 1.3; opacity: .48; stroke-dasharray: 62 16 22 26; transform-box: fill-box; transform-origin: center; animation: abyss-ring-turn 19s linear infinite; }
+.abyss-fragment { fill: var(--color-primary); opacity: .7; transform-box: fill-box; transform-origin: center; animation: abyss-fragment-drift 13s ease-in-out infinite alternate; }
+.abyss-fragment:nth-of-type(2) { animation-delay: -7s; }
+
+/* Astral: visible star maps around an animated spiral galaxy. */
+.astral-nebula { fill: var(--color-primary); opacity: .1; filter: url(#astral-blur); animation: astral-nebula-drift 24s ease-in-out infinite alternate; }
+.astral-nebula--two { fill: var(--color-lavender); opacity: .08; animation-delay: -11s; animation-duration: 31s; }
+.astral-constellation { fill: var(--color-lavender); stroke: var(--color-lavender); stroke-width: .8; opacity: .78; animation: astral-map-glow 11s ease-in-out infinite alternate; }
+.astral-constellation path { fill: none; stroke-dasharray: 2 5; stroke-width: .9; }
+.astral-constellation circle { filter: drop-shadow(0 0 3px var(--color-lavender)); animation: astral-star 4s ease-in-out infinite alternate; }
+.astral-constellation--two { animation-delay: -4s; }
+.astral-constellation--three { animation-delay: -7s; }
+.astral-constellation--four { animation-delay: -2s; }
+.astral-constellation--five { opacity: .48; animation-delay: -5s; }
+.astral-galaxy { fill: none; stroke: url(#astral-arm); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 0 4px color-mix(in srgb, var(--color-primary) 68%, transparent)); }
+.astral-galaxy--center { transform-box: fill-box; transform-origin: center; animation: astral-galaxy-turn 52s linear infinite; }
+.astral-galaxy--center path:nth-child(2) { stroke-width: 2; opacity: .56; }
+.astral-galaxy-glow { fill: url(#astral-core); stroke: none; opacity: .48; }
+.astral-galaxy-core { fill: var(--color-lavender); stroke: none; filter: drop-shadow(0 0 8px var(--color-lavender)); }
+.astral-galaxy--distant,.astral-galaxy--near,.astral-galaxy--far { stroke-width: 2.5; opacity: .43; }
+.astral-galaxy--distant { transform-box: fill-box; transform-origin: center; animation: astral-galaxy-turn 88s linear infinite; }
+.astral-galaxy--near { transform-box: fill-box; transform-origin: center; animation: astral-galaxy-turn 112s linear infinite reverse; }
+.astral-galaxy--far { transform-box: fill-box; transform-origin: center; animation: astral-galaxy-turn 136s linear infinite; }
+.astral-galaxy--distant circle,.astral-galaxy--near circle,.astral-galaxy--far circle { fill: var(--color-lavender); stroke: none; }
+.astral-orbit { fill: none; stroke: var(--color-lavender); stroke-width: .8; stroke-dasharray: 2 7; opacity: .38; transform-box: fill-box; transform-origin: center; animation: astral-orbit-turn 90s linear infinite; }
+.astral-orbit--two { stroke: var(--color-primary); stroke-dasharray: 1 9; animation-duration: 116s; animation-direction: reverse; }
+.astral-orbiting-star { fill: var(--color-lavender); filter: drop-shadow(0 0 5px var(--color-lavender)); transform-box: fill-box; transform-origin: center; animation: astral-star 3.8s ease-in-out infinite alternate; }
+.astral-orbiting-star--second { animation-delay: -1.9s; }
+
+.theme-particle { fill: var(--color-lavender); opacity: .6; filter: drop-shadow(0 0 3px var(--color-primary)); animation: astral-star 5s ease-in-out infinite alternate; }
+.theme-particle--b { animation-delay: -1.5s; }
+.theme-particle--c { animation-delay: -3.2s; }
+
+@keyframes abyss-aura { from { opacity: .62; transform: scale(.96); } to { opacity: 1; transform: scale(1.04); } }
+@keyframes abyss-pulse { 0% { opacity: 0; transform: scale(.62); } 20% { opacity: .33; } 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes abyss-gravity-turn { to { transform: rotate(360deg); } }
+@keyframes abyss-ring-turn { to { transform: rotate(360deg); } }
+@keyframes abyss-flow { to { stroke-dashoffset: -320px; } }
+@keyframes abyss-fracture-glow { from { opacity: .12; stroke-dashoffset: 0; } to { opacity: .32; stroke-dashoffset: -16; } }
+@keyframes abyss-fragment-drift { from { transform: translate3d(-3px,4px,0) rotate(-8deg); } to { transform: translate3d(5px,-7px,0) rotate(12deg); } }
+@keyframes astral-nebula-drift { from { transform: translate3d(-5px,4px,0) scale(.94); } to { transform: translate3d(7px,-5px,0) scale(1.08); } }
+@keyframes astral-map-glow { from { opacity: .48; } to { opacity: .9; } }
+@keyframes astral-star { from { opacity: .28; transform: scale(.78); } to { opacity: 1; transform: scale(1.2); } }
+@keyframes astral-galaxy-turn { to { transform: rotate(360deg); } }
+@keyframes astral-orbit-turn { to { transform: rotate(360deg); } }
+
+@media (max-width: 680px) {
+  .solar-hero__atmosphere { opacity: .8; }
+  .theme-art { transform: scale(.9); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-art *, .solar-hero__atmosphere { animation: none !important; transition: none !important; }
+}
